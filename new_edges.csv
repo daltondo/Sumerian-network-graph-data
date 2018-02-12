@@ -1,0 +1,4 @@
+id,source,target,p_index,year,type,source's role,target's role
+1,1,176,103607,Shu-Suen.03.03.00 (us2 year),Undirected,['intermediary'],['intermediary']
+2,1,321,103607,Shu-Suen.03.03.00 (us2 year),Undirected,['intermediary'],['intermediary']
+3,176,321,103607,Shu-Suen.03.03.00 (us2 year),Undirected,['intermediary'],['intermediary']

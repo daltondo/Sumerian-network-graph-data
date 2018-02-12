@@ -1,0 +1,18 @@
+### NOTES ###
+### 1. I noticed that some nodes were not merged together since they had different professions
+### but one of the differing professions was "None". Could they possibly be the same person?
+### --- we need to look at the year for this
+### 2. Inspect this text: 126272, for some reason there are many edges going back to the same node
+### --- this is a text with multiple transactions with a person involved in multiple transactions
+
+### 1. I only looked at transactions with 2 or 3 people involved this week
+### --- 4 or more people involved made the edge creations too complicated, may have to look at them case by case to learn how to split them
+
+
+### TODO ###
+### 1. Take out edges refering to texts with multiple transactions (DONE)
+### 2. Work on creating DIRECTED graphs, with the edge format we know how to deal with (DONE)
+### 3. Create some graph statistics (mainly eigenvector centrality)
+### 4. Perhaps break up with file so that nodes are only created once elsewhere (DONE)
+### 5. Perhaps figure out a way so that the id of nodes isn't different each time of creation
+### 6. Acquire 10-16 multiple transaction texts, and then send to Harini (DONE)
