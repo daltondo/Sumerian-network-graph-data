@@ -46,3 +46,4 @@ Currently, edges have no weight assigned to them. In the future, we will decide 
 # TODO
 - Handle multiple transactions in a text
 - Handle texts that have 4 or more people in the transaction
+- Uncover different ways to merge nodes (by years, connection to modes, etc)
