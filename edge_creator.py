@@ -16,9 +16,9 @@ def create_edge_list():
 		writer.writeheader()
 
 		curr_id = 1
-		count = 0
+		count = 0 # can move this around in the control flow to count how many transactions are of a certain type
 		for key, value in node_merger.p_indexes_to_people.items():
-			# removing multiple transactions: this thins it down from 11384 edges to 9069 edges 
+			# removing multiple transactions: this thins it down from 11384 edges to 9069 edges
 			if len(value) > 1 and len(value) < 5:
 				### FOR NOW JUST CREATE EDGES WITH WHAT YOU KNOW
 				### 1. source -> recipient (Done)
@@ -53,6 +53,7 @@ def create_edge_list():
 						id2 = node2.id
 
 						edge_type = "Directed"
+
 					# there are 456 transactions between other person -> "recipient"
 					# thus this creates 456 edges
 					# sometimes there are "recipients" -> "recipients" in a transactions, so the edge is chose arbitrarily
@@ -70,6 +71,7 @@ def create_edge_list():
 						id1 = node1.id
 
 						edge_type = "Directed"
+
 					# there are 280 transactions where there are neither a source nor a recipient
 					# thus this creates 280 edges
 					else:
@@ -87,7 +89,7 @@ def create_edge_list():
 
 					edge_id = curr_id
 					curr_id += 1
-					p_index = key 
+					p_index = key
 					index_of_year = node1.p_index.index(p_index)
 					year = node1.year[index_of_year]
 
@@ -141,7 +143,7 @@ def create_edge_list():
 							edge_type = "Directed"
 							edge_id = curr_id
 							curr_id += 1
-							p_index = key 
+							p_index = key
 							index_of_year = node1.p_index.index(p_index)
 							year = node1.year[index_of_year]
 
@@ -193,7 +195,7 @@ def create_edge_list():
 							edge_type = "Directed"
 							edge_id = curr_id
 							curr_id += 1
-							p_index = key 
+							p_index = key
 							index_of_year = node1.p_index.index(p_index)
 							year = node1.year[index_of_year]
 
@@ -231,6 +233,7 @@ def create_edge_list():
 								'source\'s role': role2,
 								'target\'s role': role3
 								})
+
 					# if neither of these structures, just make triangular undirected edges (creates 3 edges)
 					# there are 685 transactions of this structure
 					# thus this creates 2055 edges
@@ -260,7 +263,7 @@ def create_edge_list():
 						edge_type = "Undirected"
 						edge_id = curr_id
 						curr_id += 1
-						p_index = key 
+						p_index = key
 						index_of_year = node1.p_index.index(p_index)
 						year = node1.year[index_of_year]
 
@@ -283,7 +286,7 @@ def create_edge_list():
 							'p_index': p_index,
 							'year': year,
 							'type': edge_type,
-							'source\'s role': role1,								
+							'source\'s role': role1,
 							'target\'s role': role3
 							})
 						edge_id = curr_id
@@ -298,19 +301,21 @@ def create_edge_list():
 							'source\'s role': role2,
 							'target\'s role': role3
 							})
-			if len(value) == 4:
-				with open('4_people_transactions.csv', 'w') as csvfile:
-					filednames = ['p_index', 'people involved', 'roles involved']
-					writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-					writer.writeheader()
 
-					count += 1
-					list_of_roles = []
-					role_to_node = {}
-					for node in value:
-							list_of_roles.append(node[1])
-							role_to_node[node[1]] = node
-					# print(key, list_of_roles)
-		# print(count)
-		writer.close()
+			# if len(value) == 4:
+			# 	print("HERE")
+			# 	with open('4_people_transactions.csv', 'w') as csvfile:
+			# 		filednames = ['p_index', 'people involved', 'roles involved']
+			# 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+			# 		writer.writeheader()
+			#
+			# 		count += 1
+			# 		list_of_roles = []
+			# 		role_to_node = {}
+			# 		for node in value:
+			# 				list_of_roles.append(node[1])
+			# 				role_to_node[node[1]] = node
+			# 		# print(key, list_of_roles)
+			# 		csvfile.close()
 
+		csvfile.close()

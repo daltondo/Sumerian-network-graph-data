@@ -11,7 +11,7 @@ p_indexes_to_people = defaultdict(list)
 new_person_to_info = {}
 
 
-# traverses through all the newly created persons, each a person has more than 1 node, merge those nodes
+# traverses through all the newly created persons, in each person has more than 1 node, merge those nodes
 def merge_nodes():
 	number_of_nodes_merged = 0
 	for key, value in node_creator.person_to_info.items():
@@ -21,7 +21,7 @@ def merge_nodes():
 	return number_of_nodes_merged
 
 
-# the ith role, profession, p_id all coreespond with each other
+# the ith role, profession, p_id all correspond with each other
 def merge_nodes_helper(person, list_of_nodes):
 	roles = []
 	p_indexes = []
@@ -60,13 +60,13 @@ def create_new_nodes_list():
 			node.add_id(curr_id)
 
 			writer.writerow({
-				'id': curr_id, 
-				'name': name, 
-				'role': role, 
-				'profession': profession, 
+				'id': curr_id,
+				'name': name,
+				'role': role,
+				'profession': profession,
 				'p_index': p_index,
 				'year': year
 				})
 			curr_id += 1
 
-
+		csvfile.close()

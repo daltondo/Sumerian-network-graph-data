@@ -38,5 +38,3 @@ def create_nodes_list():
 			person = (name, profession)
 			node = Node(name, role, profession, p_index, year)
 			person_to_info[person].append(node)
-
-

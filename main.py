@@ -19,14 +19,14 @@ def main():
 	# creates the edge list from new_person_to_info
 	edge_creator.create_edge_list()
 
-
 	# ##### DISPLAYING OUTPUT #####
-	# # displaying the amount of nodes merged
+	# displaying the amount of nodes merged
 	print("AMOUNT OF NODES MERGED: ", number_of_nodes_merged)
 
-	# # acquiring list of texts where there were only 1 participants
+	# acquiring list of texts where there were only 1 participants
+	# uncomment below to retrieve the texts where there are only single participants
 	# list_of_single_participant_texts = data_handler.find_single_participant_texts()
-	print("LIST OF SINGLE PARTICIPANT TEXTS: ", list_of_single_participant_texts)
+	# print("LIST OF SINGLE PARTICIPANT TEXTS: ", list_of_single_participant_texts)
 	# ##### END DISPLAYING OUTPUT #####
 
 
