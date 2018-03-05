@@ -44,7 +44,7 @@ Currently, edges have no weight assigned to them. In the future, we will decide 
 
 
 # How many Nodes were merged?
-- Merged by (name, profession): 1087
+1. Merged by (name, profession): 1087
 
 
 # TODO
