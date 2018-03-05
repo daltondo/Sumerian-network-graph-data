@@ -11,4 +11,3 @@
 # To Run
 1. cd to the folder containing all your files
 2. python3 main.py
-3. 
