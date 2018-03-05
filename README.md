@@ -14,7 +14,7 @@
 3. the script will output *new_nodes.csv* and *new_edges.csv* which correspond to the node and edge list respectively
 
 
-# What is Node?
+# What is a Node?
 It is a class that contains information about each person in the graph. It has the name,
 role, profession, p_index, year the text was written in, and an arbitrary id.
 
