@@ -41,3 +41,8 @@ node_merger.py. Printing this variable will yield how many nodes were merged.
 
 # How are edges weighed?
 Currently, edges have no weight assigned to them. In the future, we will decide how to weigh edges.
+
+
+# TODO
+- Handle multiple transactions in a text
+- Handle texts that have 4 or more people in the transaction
