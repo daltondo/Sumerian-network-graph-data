@@ -39,11 +39,17 @@ The script already has a built in variable *number_of_nodes_merged* that will in
 node_merger.py. Printing this variable will yield how many nodes were merged.
 
 
-# How are edges weighed?
+# How are Edges weighed?
 Currently, edges have no weight assigned to them. In the future, we will decide how to weigh edges.
+
+
+# How many Nodes were merged?
+- Merged by (name, profession): 1087
 
 
 # TODO
 - Handle multiple transactions in a text
 - Handle texts that have 4 or more people in the transaction
-- Uncover different ways to merge nodes (by years, connection to modes, etc)
+- Uncover different ways to merge nodes (by years, connection to modes, etc) -- create a hierarchy of merging
+- Look at family column
+- Look at new csv people.csv
