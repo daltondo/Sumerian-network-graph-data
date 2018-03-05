@@ -52,4 +52,4 @@ Currently, edges have no weight assigned to them. In the future, we will decide 
 - Handle texts that have 4 or more people in the transaction
 - Uncover different ways to merge nodes (by years, connection to modes, etc) -- create a hierarchy of merging
 - Look at family column
-- Look at new csv people.csv
+- Look at new csv, people.csv
