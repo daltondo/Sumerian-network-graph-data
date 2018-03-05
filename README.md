@@ -1,4 +1,4 @@
-# Sumerian-network-graph-data
+# Sumerian-network-graph-data overview
 
 1. File flow: main.py -> node_creator.py, node_merger.py, data_handler.py, edge_creator.py
 2. node_creator.py: holds the Node class and reads *full_roles_profs.csv*, creating a node per row in there
