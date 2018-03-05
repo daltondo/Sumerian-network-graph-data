@@ -23,8 +23,8 @@ is obtained. Each row will create exactly one node. Nodes may not contain unique
 
 # How are Nodes merged?
 At this stage the previously created nodes will be merged so that each node will contain a "unique" person.
-The way that we define "unique" is such that each node will have a different name and profession.
-** We are currently working on different attributes we can look at to merge nodes **
+The way that we define "unique" is such that each node will have a different name and profession. <br />
+**We are currently working on different attributes we can look at to merge nodes** <br />
 In the previous step, we created a mapping of {(name, profession): nodes associated}. We can iterate through this mapping,
 looking at each key, and if the value associated to the key is greater than one, we merge those values.
 Then, the nodes will have lists for the following attributes: role, p_index, year. The ith index in role will correspond to
