@@ -37,7 +37,7 @@ def create_nodes_list():
 			role = row['role']
 			profession = row['profession']
 			family = row['family']
-			p_index = row['p id']
+			p_index = row['p_id']
 			year = row['year']
 
 			person = (name, profession)

@@ -26,13 +26,15 @@ def merge_nodes_helper(person, list_of_nodes):
 	roles = []
 	p_indexes = []
 	years = []
+	family = []
 
 	for node in list_of_nodes:
 		roles.append(node.role)
 		p_indexes.append(node.p_index)
 		years.append(node.year)
+		family.append(node.family)
 
-	node = node_creator.Node(person[0], roles, person[1], p_indexes, years)
+	node = node_creator.Node(person[0], roles, person[1], family, p_indexes, years)
 	new_person_to_info[person] = node
 
 
@@ -40,7 +42,7 @@ def merge_nodes_helper(person, list_of_nodes):
 # writes the new persons (merged nodes) into a nodes list
 def create_new_nodes_list():
 	with open('new_nodes.csv', 'w') as csvfile:
-		fieldnames = ['id', 'name', 'role', 'profession', 'p_index', 'year']
+		fieldnames = ['id', 'name', 'role', 'profession', 'family', 'p_index', 'year']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
 		writer.writeheader()
@@ -55,6 +57,7 @@ def create_new_nodes_list():
 
 			role = node.role
 			profession = node.profession
+			family = node.family
 			p_index = node.p_index
 			year = node.year
 			node.add_id(curr_id)
@@ -64,6 +67,7 @@ def create_new_nodes_list():
 				'name': name,
 				'role': role,
 				'profession': profession,
+				'family': family,
 				'p_index': p_index,
 				'year': year
 				})
