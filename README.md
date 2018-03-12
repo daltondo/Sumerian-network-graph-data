@@ -56,3 +56,4 @@ Currently, edges have no weight assigned to them. In the future, we will decide 
 - Look at family column
 - Look at new csv, people.csv
 - Add weights to edges (refer to "How are Edges weighed?")
+- Add in archives to Node variables
