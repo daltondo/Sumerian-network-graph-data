@@ -42,7 +42,7 @@ node_merger.py. Printing this variable will yield how many nodes were merged.
 # How are Edges weighed?
 Currently, edges have no weight assigned to them. In the future, we will decide how to weigh edges.
 - if source and target have same source and target then merge the edges and increment its weight
-- make a list of years, p_indexes, source's role, target's role
+- make a list of years, p_indexes, source's role, target's role, archives
 
 
 # How many Nodes were merged?
