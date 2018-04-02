@@ -14,7 +14,7 @@ new_person_to_info = {}
 # traverses through all the newly created persons, in each person has more than 1 node, merge those nodes
 def merge_nodes():
 	number_of_nodes_merged = 0
-	for key, value in node_creator.person_to_info.items():
+	for key, value in sorted(years_node_creator.person_to_info.items(), key = lambda x:x[0][0]):
 		if len(value) > 1:
 			merge_nodes_helper(key, value)
 			number_of_nodes_merged += 1
@@ -27,14 +27,17 @@ def merge_nodes_helper(person, list_of_nodes):
 	p_indexes = []
 	years = []
 	family = []
+	processed=[]
 
 	for node in list_of_nodes:
 		roles.append(node.role)
 		p_indexes.append(node.p_index)
 		years.append(node.year)
 		family.append(node.family)
+		if node.processed != '':
+			processed.append(node.processed)
 
-	node = node_creator.Node(person[0], roles, person[1], family, p_indexes, years)
+	node = node_creator.Node(person[0], roles, person[1], family, p_indexes, years, processed)
 	new_person_to_info[person] = node
 
 
@@ -42,7 +45,7 @@ def merge_nodes_helper(person, list_of_nodes):
 # writes the new persons (merged nodes) into a nodes list
 def create_new_nodes_list():
 	with open('new_nodes.csv', 'w') as csvfile:
-		fieldnames = ['id', 'name', 'role', 'profession', 'family', 'p_index', 'year']
+		fieldnames = ['id', 'name', 'role', 'profession', 'processed', 'family', 'p_index', 'year', 'maxYear', 'minYear']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
 		writer.writeheader()
@@ -60,6 +63,13 @@ def create_new_nodes_list():
 			family = node.family
 			p_index = node.p_index
 			year = node.year
+			processed = node.processed
+			if len(processed)>0:
+				maxYear = max(processed)
+				minYear = min(processed)
+			else:
+				maxYear = 0
+				minYear = 0
 			node.add_id(curr_id)
 
 			writer.writerow({
@@ -69,7 +79,10 @@ def create_new_nodes_list():
 				'profession': profession,
 				'family': family,
 				'p_index': p_index,
-				'year': year
+				'maxYear': maxYear,
+				'minYear': minYear,
+				'year': year,
+				'processed': processed
 				})
 			curr_id += 1
 

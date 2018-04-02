@@ -19,6 +19,7 @@ class Node:
         self.family = family
         self.p_index = p_index
         self.year = year
+        self.processed = processed
         self.id = None
 
     def add_id(self, id):
@@ -36,10 +37,11 @@ def create_nodes_list():
 			name = row['name']
 			role = row['role']
 			profession = row['profession']
-			family = row['family']
-			p_index = row['p_id']
+			p_index = row['p id']
 			year = row['year']
+			processed = row['processed']
 
 			person = (name, profession)
-			node = Node(name, role, profession, family, p_index, year)
+			node = Node(name, role, profession, p_index, year, processed)
+
 			person_to_info[person].append(node)
