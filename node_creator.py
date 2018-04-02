@@ -11,7 +11,7 @@ person_to_info = defaultdict(list)
 
 # container to store row data
 class Node:
-    def __init__(self, name, role, profession, family, p_index, year):
+    def __init__(self, name, role, profession, family, p_index, year, processed):
         self.name = name
         self.role = role
         self.profession = profession
@@ -31,17 +31,17 @@ class Node:
 def create_nodes_list():
     # changed csv file from full_roles_profs to people.csv
     # added in an encoding
-	with open('people.csv', 'rt', encoding="utf-8") as csvfile:
-		reader = csv.DictReader(csvfile)
-		for row in reader:
-			name = row['name']
-			role = row['role']
-			profession = row['profession']
-			p_index = row['p id']
-			year = row['year']
-			processed = row['processed']
+    with open('people.csv', 'rt', encoding="utf-8") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            name = row['name']
+            role = row['role']
+            profession = row['profession']
+            family = row['family']
+            p_index = row['p_id']
+            year = row['year']
+            processed = row['year']
 
-			person = (name, profession)
-			node = Node(name, role, profession, p_index, year, processed)
-
-			person_to_info[person].append(node)
+            person = (name, profession)
+            node = Node(name, role, profession, family, p_index, year, processed)
+            person_to_info[person].append(node)

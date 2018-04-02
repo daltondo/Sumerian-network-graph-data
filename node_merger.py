@@ -14,7 +14,7 @@ new_person_to_info = {}
 # traverses through all the newly created persons, in each person has more than 1 node, merge those nodes
 def merge_nodes():
 	number_of_nodes_merged = 0
-	for key, value in sorted(years_node_creator.person_to_info.items(), key = lambda x:x[0][0]):
+	for key, value in sorted(node_creator.person_to_info.items(), key = lambda x:x[0][0]):
 		if len(value) > 1:
 			merge_nodes_helper(key, value)
 			number_of_nodes_merged += 1
@@ -36,7 +36,6 @@ def merge_nodes_helper(person, list_of_nodes):
 		family.append(node.family)
 		if node.processed != '':
 			processed.append(node.processed)
-
 	node = node_creator.Node(person[0], roles, person[1], family, p_indexes, years, processed)
 	new_person_to_info[person] = node
 
@@ -46,6 +45,7 @@ def merge_nodes_helper(person, list_of_nodes):
 def create_new_nodes_list():
 	with open('new_nodes.csv', 'w') as csvfile:
 		fieldnames = ['id', 'name', 'role', 'profession', 'processed', 'family', 'p_index', 'year', 'maxYear', 'minYear']
+
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
 		writer.writeheader()
