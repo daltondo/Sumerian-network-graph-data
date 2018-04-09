@@ -44,7 +44,7 @@ def merge_nodes_helper(person, list_of_nodes):
 # writes the new persons (merged nodes) into a nodes list
 def create_new_nodes_list():
 	with open('new_nodes.csv', 'w') as csvfile:
-		fieldnames = ['id', 'name', 'role', 'profession', 'processed', 'family', 'p_index', 'year', 'maxYear', 'minYear']
+		fieldnames = ['id', 'name', 'role', 'profession', 'processed year', 'family', 'p_index', 'date name', 'maxYear', 'minYear']
 
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
@@ -81,8 +81,8 @@ def create_new_nodes_list():
 				'p_index': p_index,
 				'maxYear': maxYear,
 				'minYear': minYear,
-				'year': year,
-				'processed': processed
+				'date name': year,
+				'processed year': processed
 				})
 			curr_id += 1
 

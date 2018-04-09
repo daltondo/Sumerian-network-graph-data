@@ -35,12 +35,12 @@ def create_nodes_list():
         reader = csv.DictReader(csvfile)
         for row in reader:
             name = row['name']
-            role = row['role']
+            role = row['roles']
             profession = row['profession']
             family = row['family']
-            p_index = row['p_id']
-            year = row['year']
-            processed = row['year']
+            p_index = row['p index']
+            year = row['date name']
+            processed = row['processed date']
 
             person = (name, profession)
             node = Node(name, role, profession, family, p_index, year, processed)
