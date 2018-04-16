@@ -1,0 +1,105 @@
+---
+title: "TimelineURAP"
+output: pdf_document
+---
+
+Installing ggplot - not necessary if already installed package 
+```{r}
+install.packages("ggplot2")
+
+```
+
+Installing repel  - not necessary if already installed package 
+repel is used in this program to make sure labels do not overlap on graph
+```{r}
+install.packages("ggrepel")
+```
+
+
+
+Loading packages - need to load each time we load R
+```{r}
+library(ggplot2)
+library(ggrepel)
+
+```
+
+
+
+Read in csv with merged nodes
+```{r}
+NodeData <- read.csv('new_nodes.csv', encoding="UTF-8")
+```
+
+
+Save values into Vectors
+maxV is first transaction recorded in CSV
+maxG is last transaction before largest gap in year data
+minG is first transaction after largest gap in year data
+minV is last transaction recorded in CSV
+
+```{r}
+idV <- NodeData[["id"]]
+nameV <- NodeData[["name"]]
+maxV <- NodeData[["maxYear"]]
+minV <- NodeData[["minYear"]]
+maxG <-  NodeData[["Max.Gap.Start.Year"]]
+minG <- NodeData[["Max.Gap.End.Year"]]
+```
+
+Creating data frame with x-axis as name and y-axis as combination of minV and maxV values
+
+This subsetData step allows us to also look at just some nodes. 
+For example, subsetData = Data[(mainData$y > 0.00) & (mainData$id < 500), ] let us create a plot for nodes with ids below 500 only. 
+
+We plot points at maxG, maxV, minG, minV because we are interested in seeing those labels on the visualization. 
+
+
+Note: If processed year is 0, it means the node had no processed year data available, so we will exclude that.
+```{r}
+Data <- data.frame(x=nameV, y=c(minV,minG, maxG, maxV), id = idV, w = c(minG, maxG))
+subsetData = Data[(mainData$y > 0.00), ]
+```
+
+
+Prints out whole data graph to pdf:
+
+1) Plots graph with plot labels as year and adds lines through geom_line()
+2) Adds titles and axis labels
+
+
+```{r}
+
+
+Sys.setlocale("LC_ALL", 'en_US.UTF-8')
+
+
+pdf(file="plot.pdf", width=1300, height = 50)
+p <- ggplot(subsetData, aes(x = x, y = y, label = myData[['y']])) + geom_point() + geom_line() + geom_line(aes(x = myData$x, y = myData$w, color = 'red', size = 2)) + geom_label_repel() 
+
+
+
+
+p + theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (30)), axis.text.x = element_text(angle = 60, hjust = 1)) + ggtitle("Active Years of Merged Nodes") + labs(y="Processed Years", x = "Names") 
+
+```
+
+
+----------Past Versions------------
+
+```{r}
+pdf(file="plot.pdf", width=800, height = 50)
+p <- ggplot(myData, aes(x, y, label = myData[['y']])) + geom_point() + geom_line() + geom_label_repel() 
+p + theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (30)), axis.text.x = element_text(angle = 60, hjust = 1)) + ggtitle("Active Years of Merged Nodes") + labs(y="Processed Years", x = "Names")
+
+```
+
+(OPTIONAL) Examining a subset of data by plotting only first 90 points
+
+```{r (Optional) Examining subset of data}
+pdf(file="plotPart.pdf", width=400, height = 50)
+df <- tail(data.frame(x=nameV, y=c(minV, maxV)), 100)
+p <- ggplot(df, aes(x, y, label = df[['y']])) + geom_point() + geom_line() + geom_label_repel()
+p + theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (30)), axis.text.x = element_text(angle = 60, hjust = 1)) + ggtitle("Active Years of Merged Nodes") + labs(y="Processed Years", x = "Names")
+```
+

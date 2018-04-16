@@ -44,7 +44,7 @@ def merge_nodes_helper(person, list_of_nodes):
 # writes the new persons (merged nodes) into a nodes list
 def create_new_nodes_list():
 	with open('new_nodes.csv', 'w') as csvfile:
-		fieldnames = ['id', 'name', 'role', 'profession', 'processed year', 'family', 'p_index', 'date name', 'maxYear', 'minYear']
+		fieldnames = ['id', 'name', 'role', 'profession', 'processed year', 'family', 'p_index', 'date name', 'maxYear', 'minYear', 'Max Gap Start Year', 'Max Gap End Year']
 
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
@@ -63,6 +63,8 @@ def create_new_nodes_list():
 			family = node.family
 			p_index = node.p_index
 			year = node.year
+			#if there is no processed year data, sets Max and MinYear to be 0
+			#these nodes will be ignored in the final timeline visualization
 			processed = node.processed
 			if len(processed)>0:
 				maxYear = max(processed)
@@ -70,6 +72,22 @@ def create_new_nodes_list():
 			else:
 				maxYear = 0
 				minYear = 0
+			#
+			maxDiff = 0
+
+			gStart = 0 #start year of largest gap between transactions for each node
+			gEnd = 0 #end year of largest gap between transactions for each node
+			if maxYear == minYear: 
+				gStart = maxYear
+				gEnd = maxYear
+			for x,y in zip(processed[1:], processed[:-1]):
+				currDiff = float(x)-float(y)
+				if currDiff > maxDiff:
+					maxDiff = currDiff
+					gStart = x
+					gEnd = y
+
+
 			node.add_id(curr_id)
 
 			writer.writerow({
@@ -81,6 +99,8 @@ def create_new_nodes_list():
 				'p_index': p_index,
 				'maxYear': maxYear,
 				'minYear': minYear,
+				'Max Gap Start Year': gStart,
+				'Max Gap End Year': gEnd,
 				'date name': year,
 				'processed year': processed
 				})

@@ -41,7 +41,6 @@ def create_nodes_list():
             p_index = row['p index']
             year = row['date name']
             processed = row['processed date']
-
             person = (name, profession)
             node = Node(name, role, profession, family, p_index, year, processed)
             person_to_info[person].append(node)
